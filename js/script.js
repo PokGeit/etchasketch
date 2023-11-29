@@ -89,14 +89,36 @@ function onButtonClick()
     {
         clearTiles();
     }
+
+    if(this.id == "rainbow")
+    {
+        if(global_rainbow)
+        {
+            global_rainbow = false;
+        }
+        else
+        {
+            global_rainbow = true;
+        }
+    }
     return;
 }
 
 function clearTiles()
 {
     //Deletes the tiles
-
+    const tiles = document.querySelectorAll('.tile');
+    tiles.forEach((tile) => {
+        tile.remove();
+    })
 
     //Deletes the tile rows
+    const tileRows = document.querySelectorAll('.tile');
+    tileRows.forEach((tileRow) => {
+        tileRow.remove();
+    })
+
+    //Spawn new tiles
+    generateTiles(global_tiles);
     return;
 }
