@@ -29,7 +29,7 @@ function generateTiles(tileLength)
         let newDiv = document.createElement('div');
         newDiv.classList.add('tileRow');
         newDiv.setAttribute('id', x);
-        let div = this.tileWrapper.appendChild(newDiv);
+        //let div = this.tileWrapper.appendChild(newDiv);
 
         //Place tiles within the tile rows
         for(tile = 0; tile < tileLength; tile++)
@@ -38,11 +38,14 @@ function generateTiles(tileLength)
             newTile.classList.add('tile');
             newTile.setAttribute('id', x+"-"+tile);
             newTile.addEventListener('mouseover', onTileClick);
-            this.tileWrapper.appendChild(newTile);
+            
+            //this.tileWrapper.appendChild(newTile);
+            //let targetTileRow = document.querySelector("#"+x.toString());
+            newDiv.appendChild(newTile);
 
             console.log(x+"-"+tile);
         }
-
+        let div = this.tileWrapper.appendChild(newDiv);
     }
 
 
