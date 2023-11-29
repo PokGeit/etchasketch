@@ -61,7 +61,7 @@ function generateTiles(tileLength)
             newTile.classList.add('tile');
             newTile.setAttribute('id', x+"-"+tile);
             newTile.addEventListener('mouseover', onTileClick);
-            
+
             //this.tileWrapper.appendChild(newTile);
             //let targetTileRow = document.querySelector("#"+x.toString());
             newDiv.appendChild(newTile);
@@ -94,6 +94,9 @@ function generateTiles(tileLength)
 function onTileClick()
 {
     let colorStr = "";
+    let opacityStr = "";
+    let newOpacity = 0.1;
+    let tile = this;
     if(global_rainbow)
     {
         //Rainbow mode
@@ -103,10 +106,32 @@ function onTileClick()
 
     else
     {
-        colorStr = "background-color: black";
+        //get opacity
+        let opacity = parseFloat(document.getElementById(this.id.toString()).style.opacity);
+        console.log("opacity of tile "+this.id+" is: "+opacity)
+
+        if (opacity != null)
+        {
+            if(opacity >= 0.1 && opacity < 1.0)
+            {
+                newOpacity = opacity + 0.1;
+                console.log("Old: "+opacity+" New: "+newOpacity)
+            }
+            else if (opacity >= 1.0)
+            {
+                newOpacity = 1.0;
+            }
+            else 
+            {
+                newOpacity = 0.1;
+            }
+        }
+
+        colorStr = "background-color: black;";
+        opacityStr = "opacity : "+newOpacity;
     }
 
-    this.setAttribute("style", colorStr);
+    this.setAttribute("style", colorStr+opacityStr);
     return;
 }
 
