@@ -140,7 +140,7 @@ function clearTiles()
     })
 
     //Deletes the tile rows
-    const tileRows = document.querySelectorAll('.tile');
+    const tileRows = document.querySelectorAll('.tileRow');
     tileRows.forEach((tileRow) => {
         tileRow.remove();
     })
