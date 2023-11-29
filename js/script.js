@@ -25,6 +25,9 @@ function init()
         button.addEventListener('click', onButtonClick)
     })
 
+    const slider = document.querySelector('.slider');
+    slider.addEventListener('input', onSliderChange)
+
     generateTiles(16);
     console.log("Script init completed.")
     return 1;
@@ -140,5 +143,20 @@ function clearTiles()
 
     //Spawn new tiles
     generateTiles(global_tiles);
+    return;
+}
+
+function onSliderChange()
+{
+    if(this.value < 0 || this.value > AUTHORIZED_TILE_LENGTHS.length)
+    {
+        console.log("Invalid slider value detected");
+        return;
+    }
+    else
+    {
+        global_tiles = AUTHORIZED_TILE_LENGTHS[parseInt(this.value)+1];
+        clearTiles();
+    }
     return;
 }
