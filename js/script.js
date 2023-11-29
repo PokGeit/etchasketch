@@ -6,7 +6,7 @@ const AUTHORIZED_TILE_LENGTHS = [2, 4, 8, 16, 32, 64, 128];
 
 //Initialize script
 //generateTiles(DEFAULT_TILE_LENGTH);
-generateTiles(16);
+generateTiles(128);
 console.log("Script loaded.");
 
 
@@ -45,6 +45,7 @@ function generateTiles(tileLength)
 
             console.log(x+"-"+tile);
         }
+
         let div = this.tileWrapper.appendChild(newDiv);
     }
 
