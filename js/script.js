@@ -7,7 +7,7 @@ const RAINBOW_COLORS = [
 "#FFA833",
 "#33FF39",
 "#FC33FF",
-"0E14D1"
+"#0E14D1"
 ];
 
 //Globals
@@ -159,7 +159,7 @@ function onSliderChange()
     }
     else
     {
-        global_tiles = AUTHORIZED_TILE_LENGTHS[parseInt(this.value)+1];
+        global_tiles = AUTHORIZED_TILE_LENGTHS[parseInt(this.value)];
         clearTiles();
     }
     return;
