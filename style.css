@@ -6,10 +6,6 @@ body {
     background-color: cadetblue;
 }
 
-div {
-    border: 1px solid red;
-}
-
 /* Header */
 .header {
     width: 100%;
