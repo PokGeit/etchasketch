@@ -14,7 +14,7 @@ const RAINBOW_COLORS = [
 let global_rainbow = false;
 let global_tiles = DEFAULT_TILE_LENGTH;
 
-//generateTiles(DEFAULT_TILE_LENGTH);
+
 init();
 
 
@@ -38,7 +38,6 @@ function generateTiles(tileLength)
 {
     let tileSize;
 
-    //const tileWrapper = document.querySelector('.tileWrapper');
 
     //Square of tile length is the total amount of tiles to create
     const totalTiles = tileLength * tileLength;
@@ -52,7 +51,6 @@ function generateTiles(tileLength)
         let newDiv = document.createElement('div');
         newDiv.classList.add('tileRow');
         newDiv.setAttribute('id', x);
-        //let div = this.tileWrapper.appendChild(newDiv);
 
         //Place tiles within the tile rows
         for(tile = 0; tile < tileLength; tile++)
@@ -61,9 +59,6 @@ function generateTiles(tileLength)
             newTile.classList.add('tile');
             newTile.setAttribute('id', x+"-"+tile);
             newTile.addEventListener('mouseover', onTileClick);
-
-            //this.tileWrapper.appendChild(newTile);
-            //let targetTileRow = document.querySelector("#"+x.toString());
             newDiv.appendChild(newTile);
 
             console.log(x+"-"+tile);
@@ -71,24 +66,6 @@ function generateTiles(tileLength)
 
         let div = this.tileWrapper.appendChild(newDiv);
     }
-
-
-    //Old way
-    /*for(x = 0; x <totalTiles; x++)
-    {
-        let newDiv = document.createElement('div');
-
-        //Tile class is defined in style.css
-        newDiv.classList.add('tile');
-        newDiv.setAttribute('id', x);
-        
-        //newDiv.style.width = "32px";
-        //newDiv.style.height = "32px";
-
-        newDiv.addEventListener('mouseover', onTileClick);
-        let div = this.tileWrapper.appendChild(newDiv);
-
-    }*/
 }
 
 function onTileClick()
