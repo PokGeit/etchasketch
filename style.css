@@ -50,16 +50,26 @@ div {
     height: 512px;
     background-color: azure;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    justify-content:space-between;
+    justify-content:center;
     gap: 0px;
 }
 
 .tile {
     background-color: rgb(0, 255, 115);
     border: 0px;
-    /*width: 32px;
-    height: 32px;*/
+    width: auto;
+    height: auto;
     flex: 1 0 auto;
+}
+
+.tileRow {
+    background-color: black;
+    border: 0px;
+    display: flex;
+    justify-content:center;
     align-items: center;
+    flex-direction:row;
+    gap: 0px;
 }

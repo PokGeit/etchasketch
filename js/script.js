@@ -23,7 +23,31 @@ function generateTiles(tileLength)
     //Calculate desired size of new tiles
     tileSize = WRAPPER_SIZE / tileLength;
 
-    for(x = 0; x <totalTiles; x++)
+    //Place tile rows
+    for(x = 0; x < tileLength; x++)
+    {
+        let newDiv = document.createElement('div');
+        newDiv.classList.add('tileRow');
+        newDiv.setAttribute('id', x);
+        let div = this.tileWrapper.appendChild(newDiv);
+
+        //Place tiles within the tile rows
+        for(tile = 0; tile < tileLength; tile++)
+        {
+            let newTile = document.createElement('div');
+            newTile.classList.add('tile');
+            newTile.setAttribute('id', x+"-"+tile);
+            newTile.addEventListener('mouseover', onTileClick);
+            this.tileWrapper.appendChild(newTile);
+
+            console.log(x+"-"+tile);
+        }
+
+    }
+
+
+    //Old way
+    /*for(x = 0; x <totalTiles; x++)
     {
         let newDiv = document.createElement('div');
 
@@ -37,7 +61,7 @@ function generateTiles(tileLength)
         newDiv.addEventListener('mouseover', onTileClick);
         let div = this.tileWrapper.appendChild(newDiv);
 
-    }
+    }*/
 }
 
 function onTileClick()
