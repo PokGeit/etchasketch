@@ -2,6 +2,13 @@
 const DEFAULT_TILE_LENGTH = 16;
 const WRAPPER_SIZE = 512;
 const AUTHORIZED_TILE_LENGTHS = [2, 4, 8, 16, 32, 64, 128];
+const RAINBOW_COLORS = [
+"#FF0000",
+"#FFA833",
+"#33FF39",
+"#FC33FF",
+"0E14D1"
+];
 
 //Globals
 let global_rainbow = false;
@@ -79,7 +86,20 @@ function generateTiles(tileLength)
 
 function onTileClick()
 {
-    this.setAttribute("style", "background-color: red;")
+    let colorStr = "";
+    if(global_rainbow)
+    {
+        //Rainbow mode
+        let colorRgb = RAINBOW_COLORS[Math.floor(Math.random()*RAINBOW_COLORS.length)];
+        colorStr = "background-color: "+colorRgb;
+    }
+
+    else
+    {
+        colorStr = "background-color: black";
+    }
+
+    this.setAttribute("style", colorStr);
     return;
 }
 
