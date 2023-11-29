@@ -3,12 +3,25 @@ const DEFAULT_TILE_LENGTH = 16;
 const WRAPPER_SIZE = 512;
 const AUTHORIZED_TILE_LENGTHS = [2, 4, 8, 16, 32, 64, 128];
 
+//Globals
+let global_rainbow = false;
+let global_tiles = DEFAULT_TILE_LENGTH;
 
-//Initialize script
 //generateTiles(DEFAULT_TILE_LENGTH);
-generateTiles(16);
-console.log("Script loaded.");
+init();
 
+
+function init()
+{
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        button.addEventListener('click', onButtonClick)
+    })
+
+    generateTiles(16);
+    console.log("Script init completed.")
+    return 1;
+}
 
 //============//
 function generateTiles(tileLength)
@@ -67,5 +80,23 @@ function generateTiles(tileLength)
 function onTileClick()
 {
     this.setAttribute("style", "background-color: red;")
+    return;
+}
+
+function onButtonClick()
+{
+    if(this.id == "erase")
+    {
+        clearTiles();
+    }
+    return;
+}
+
+function clearTiles()
+{
+    //Deletes the tiles
+
+
+    //Deletes the tile rows
     return;
 }
