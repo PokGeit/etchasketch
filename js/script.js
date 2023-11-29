@@ -2,13 +2,36 @@
 const DEFAULT_TILE_LENGTH = 16;
 const WRAPPER_SIZE = 512;
 const AUTHORIZED_TILE_LENGTHS = [2, 4, 8, 16, 32, 64, 128];
+const RAINBOW_COLORS = [
+"#FF0000",
+"#FFA833",
+"#33FF39",
+"#FC33FF",
+"0E14D1"
+];
 
+//Globals
+let global_rainbow = false;
+let global_tiles = DEFAULT_TILE_LENGTH;
 
-//Initialize script
 //generateTiles(DEFAULT_TILE_LENGTH);
-generateTiles(128);
-console.log("Script loaded.");
+init();
 
+
+function init()
+{
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        button.addEventListener('click', onButtonClick)
+    })
+
+    const slider = document.querySelector('.slider');
+    slider.addEventListener('input', onSliderChange)
+
+    generateTiles(16);
+    console.log("Script init completed.")
+    return 1;
+}
 
 //============//
 function generateTiles(tileLength)
@@ -70,6 +93,74 @@ function generateTiles(tileLength)
 
 function onTileClick()
 {
-    this.setAttribute("style", "background-color: red;")
+    let colorStr = "";
+    if(global_rainbow)
+    {
+        //Rainbow mode
+        let colorRgb = RAINBOW_COLORS[Math.floor(Math.random()*RAINBOW_COLORS.length)];
+        colorStr = "background-color: "+colorRgb;
+    }
+
+    else
+    {
+        colorStr = "background-color: black";
+    }
+
+    this.setAttribute("style", colorStr);
+    return;
+}
+
+function onButtonClick()
+{
+    if(this.id == "erase")
+    {
+        clearTiles();
+    }
+
+    if(this.id == "rainbow")
+    {
+        if(global_rainbow)
+        {
+            global_rainbow = false;
+        }
+        else
+        {
+            global_rainbow = true;
+        }
+    }
+    return;
+}
+
+function clearTiles()
+{
+    //Deletes the tiles
+    const tiles = document.querySelectorAll('.tile');
+    tiles.forEach((tile) => {
+        tile.remove();
+    })
+
+    //Deletes the tile rows
+    const tileRows = document.querySelectorAll('.tile');
+    tileRows.forEach((tileRow) => {
+        tileRow.remove();
+    })
+
+    //Spawn new tiles
+    generateTiles(global_tiles);
+    return;
+}
+
+function onSliderChange()
+{
+    if(this.value < 0 || this.value > AUTHORIZED_TILE_LENGTHS.length)
+    {
+        console.log("Invalid slider value detected");
+        return;
+    }
+    else
+    {
+        global_tiles = AUTHORIZED_TILE_LENGTHS[parseInt(this.value)+1];
+        clearTiles();
+    }
     return;
 }
