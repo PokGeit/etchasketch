@@ -29,7 +29,6 @@ function init()
     slider.addEventListener('input', onSliderChange)
 
     generateTiles(16);
-    console.log("Script init completed.")
     return 1;
 }
 
@@ -60,8 +59,6 @@ function generateTiles(tileLength)
             newTile.setAttribute('id', x+"-"+tile);
             newTile.addEventListener('mouseover', onTileClick);
             newDiv.appendChild(newTile);
-
-            console.log(x+"-"+tile);
         }
 
         let div = this.tileWrapper.appendChild(newDiv);
@@ -79,24 +76,28 @@ function onTileClick()
         //Rainbow mode
         let colorRgb = RAINBOW_COLORS[Math.floor(Math.random()*RAINBOW_COLORS.length)];
         colorStr = "background-color: "+colorRgb;
+        opacityStr = "; opacity : 1.5";
     }
 
     else
     {
         //get opacity
         let opacity = parseFloat(document.getElementById(this.id.toString()).style.opacity);
-        console.log("opacity of tile "+this.id+" is: "+opacity)
 
         if (opacity != null)
         {
             if(opacity >= 0.1 && opacity < 1.0)
             {
                 newOpacity = opacity + 0.1;
-                console.log("Old: "+opacity+" New: "+newOpacity)
             }
-            else if (opacity >= 1.0)
+            else if (opacity >= 1.0 && opacity < 1.5)
             {
                 newOpacity = 1.0;
+            }
+            //dirty fix to restore opacity when returning from rainbow to normal mode
+            else if (opacity >= 1.5)
+            {
+                newOpacity = 0.1;
             }
             else 
             {
@@ -156,7 +157,6 @@ function onSliderChange()
 {
     if(this.value < 0 || this.value > AUTHORIZED_TILE_LENGTHS.length)
     {
-        console.log("Invalid slider value detected");
         return;
     }
     else
